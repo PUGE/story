@@ -51,7 +51,7 @@ function cutStringArray(original, before, after, index) {
 // [默认值]            无               无    
 // [类型 or 单位]     Object          DOM元素 
 //
-// ｜---------------------------------------------示例--------------------------------------------------｜
+// ｜---------------------------------------------示例-------------------------------------------------｜
 // ｜   var a = document.createElement("li");                                                          ｜
 // ｜   a.setAttribute("class", "mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left");    ｜
 // ｜   a.innerHTML = "asd";                                                                           ｜
@@ -98,19 +98,38 @@ function appendElement(Object,before, command) {
     }
 }
 
-//字符串转DOM对象
-//例子:var strDom = "<div id='strDom'>hi<li>good</li></div>"
-//    var node = string_to_DOM(strDom);
-//    console.log(node[0].getElementsByTagName("li")[0].innerHTML);
-//    输出结果为 good
-function string_to_DOM(str) {
+//         字符串转DOM对象
+//         返回值类型：DOM
+//－－－－－－－－－－－－－－－－－
+// [参数]                str      
+// [含义]           欲转换的字符串 
+// [重要性]             必填         
+// [默认值]              无            
+// [类型 or 单位]       string     
+//
+// ｜----------------------------示例-----------------------------------｜
+// ｜   var strDom = "<div id='strDom'>hi<li>good</li></div>"           ｜
+// ｜   var node = string_to_DOM(strDom);                               ｜
+// ｜   console.log(node[0].getElementsByTagName("li")[0].innerHTML);   ｜
+// ｜   输出结果为 good                                                 ｜ 
+// ｜-------------------------------------------------------------------｜
+
+function stringToDOM(str) {
     var a = document.createElement("div");
     a.innerHTML = str;
     return a.childNodes;
 }
 
-//隐藏元素(如果元素已经隐藏那么显示元素)
-function hide_element(Dom) {
+//         隐藏/显示 元素
+//         返回值类型：无
+//－－－－－－－－－－－－－－－－－
+// [参数]                Dom      
+// [含义]               Dom节点 
+// [重要性]             必填         
+// [默认值]              无            
+// [类型 or 单位]        Dom   
+//－－－－－－－－－－－－－－－－－
+function hideElement(Dom) {
     if (Dom.style.display === "none") {
         Dom.style.display = "";
     } else {
@@ -162,4 +181,9 @@ function package_element(JSON,SelectID) {
         output.push('<option value="' + key + '">' + JSON[key] + '</option>');
     }
     document.getElementById(SelectID).innerHTML=output.join('');
+}
+
+//求一段字符串在另一段字符串中出现的次数
+function getTextSum(original,text){
+	return((original.match(eval("/"+text+"/g"))||[]).length);
 }
