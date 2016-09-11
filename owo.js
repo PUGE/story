@@ -137,6 +137,20 @@ function hideElement(Dom) {
     }
 }
 
+//         获得元素标签类型
+//          返回值类型：无
+//－－－－－－－－－－－－－－－－－
+// [参数]                target      
+// [含义]               目标元素 
+// [重要性]               必填         
+// [默认值]                无            
+// [类型 or 单位]     字符串 or DOM   
+//－－－－－－－－－－－－－－－－－
+function getTagName(target){
+	if(typeof target === "string") {target=document.getElementById(target);}
+	return target.tagName;
+}
+
 //数组排序
 //var a =[1111,222,432,12213];
 //document.write(array_sort(a));
