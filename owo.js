@@ -151,6 +151,23 @@ function getTagName(target){
 	return target.tagName;
 }
 
+//          获得JSON的长度
+//          返回值类型：整数
+//－－－－－－－－－－－－－－－－－
+// [参数]                jsonData      
+// [含义]                  JSON 
+// [重要性]                必填         
+// [默认值]                 无            
+// [类型 or 单位]          JSON 
+//－－－－－－－－－－－－－－－－－
+function getJsonLength(jsonData){
+	var jsonLength = 0;
+	for(var item in jsonData){
+		jsonLength++;
+	}
+	return jsonLength;
+}
+
 //数组排序
 //var a =[1111,222,432,12213];
 //document.write(array_sort(a));
