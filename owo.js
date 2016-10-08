@@ -168,6 +168,7 @@ function getJsonLength(jsonData){
 	return jsonLength;
 }
 
+<<<<<<< HEAD
 //          数组排序
 //       返回值类型：整数
 //－－－－－－－－－－－－－－－－－
@@ -181,11 +182,19 @@ function getJsonLength(jsonData){
 // document.write(array_sort(a));   |
 // 结果为222,432,1111,12213          |
 //｜---------------示例--------------|
+=======
+//数组排序
+//var a =[1111,222,432,12213];
+//document.write(array_sort(a));
+//结果为222,432,1111,12213
+>>>>>>> 8c30afdad1c282089582f5eb9a2196d1df31f1f0
 function array_sort(array) {
     return(array.sort(function(a,b){
         return a-b;
     }));
 }
+
+
 const check ={
     //检查字符串是否仅包含中文
     chinese:function(fieldValue){
