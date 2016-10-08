@@ -111,7 +111,7 @@ function appendElement(Object,before, command) {
 // ｜   var strDom = "<div id='strDom'>hi<li>good</li></div>"           ｜
 // ｜   var node = string_to_DOM(strDom);                               ｜
 // ｜   console.log(node[0].getElementsByTagName("li")[0].innerHTML);   ｜
-// ｜   输出结果为 good                                                 ｜ 
+// ｜   输出结果为 good                                                   ｜ 
 // ｜-------------------------------------------------------------------｜
 
 function stringToDOM(str) {
@@ -137,15 +137,65 @@ function hideElement(Dom) {
     }
 }
 
-//数组排序
-//var a =[1111,222,432,12213];
-//document.write(array_sort(a));
-//结果为222,432,1111,12213
+//         获得元素标签类型
+//          返回值类型：无
+//－－－－－－－－－－－－－－－－－
+// [参数]                target      
+// [含义]               目标元素 
+// [重要性]               必填         
+// [默认值]                无            
+// [类型 or 单位]     字符串 or DOM   
+//－－－－－－－－－－－－－－－－－
+function getTagName(target){
+	if(typeof target === "string") {target=document.getElementById(target);}
+	return target.tagName;
+}
+
+//          获得JSON的长度
+//          返回值类型：整数
+//－－－－－－－－－－－－－－－－－
+// [参数]                jsonData      
+// [含义]                  JSON 
+// [重要性]                必填         
+// [默认值]                 无            
+// [类型 or 单位]          JSON 
+//－－－－－－－－－－－－－－－－－
+function getJsonLength(jsonData){
+	var jsonLength = 0;
+	for(var item in jsonData){
+		jsonLength++;
+	}
+	return jsonLength;
+}
+
+//          数组排序
+//       返回值类型：整数
+//－－－－－－－－－－－－－－－－－
+// [参数]                array      
+// [含义]              待排序数组 
+// [重要性]               必填         
+// [默认值]                无            
+// [类型 or 单位]          数组 
+//｜---------------示例--------------|
+// var a =[1111,222,432,12213];     |
+// document.write(array_sort(a));   |
+// 结果为222,432,1111,12213          |
+//｜---------------示例--------------|
 function array_sort(array) {
     return(array.sort(function(a,b){
         return a-b;
     }));
 }
+const check ={
+    //检查字符串是否仅包含中文
+    chinese:function(fieldValue){
+        return fieldValue.match(/[\u4e00-\u9fa5]/);
+    },
+    //检测字符串是否为邮箱格式
+    email:function(fieldValue){
+        return fieldValue.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
+    }
+};
 
 
 //纯文本方式更改元素内容
