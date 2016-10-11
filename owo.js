@@ -193,15 +193,16 @@ function array_sort(array) {
         return a-b;
     }));
 }
+//-------------------------------------------------------------------正则区-----------------------------------------------
 //检查
 const check ={
     //检查字符串是否仅包含中文
     chinese:function(fieldValue){
-        return fieldValue.match(/[\u4e00-\u9fa5]/);
+        return /[\u4e00-\u9fa5]/.test(fieldValue));
     },
     //检测字符串是否为邮箱格式
     email:function(fieldValue){
-        return fieldValue.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
+		return !/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(fieldValue));
     }
     //检测字符串是否为手机号格式
     phone:function(fieldValue){
@@ -300,3 +301,9 @@ function package_element(JSON,SelectID) {
 function getTextSum(original,text){
 	return((original.match(eval("/"+text+"/g"))||[]).length);
 }
+//-----------------------------------------------------------------------------数组区--------------------------------------------
+//删除数组中某项
+//var emp = ['abs','dsf','sdf','fd'];
+//emp.remove('fd');
+//emp->["abs", "dsf", "sdf"]
+Array.prototype.remove = function(val) {const index = this.indexOf(val);if (index > -1) {this.splice(index, 1);}};
