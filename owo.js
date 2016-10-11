@@ -193,6 +193,7 @@ function array_sort(array) {
         return a-b;
     }));
 }
+//检查
 const check ={
     //检查字符串是否仅包含中文
     chinese:function(fieldValue){
@@ -202,7 +203,62 @@ const check ={
     email:function(fieldValue){
         return fieldValue.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
     }
+    //检测字符串是否为手机号格式
+    phone:function(fieldValue){
+        return !(/^1[34578]\d{9}$/.test(fieldValue));
+    }
+	//检测字符串是否为固定电话号码格式
+    telephone:function(fieldValue){
+        return !/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(fieldValue));
+    }
+	//检测字符串是否为身份证(15位)格式
+    IDcard:function(fieldValue){
+        return /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/.test(fieldValue);
+    }
+	//检测字符串是否为身份证(18位)格式
+    idcard:function(fieldValue){
+        return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/.test(fieldValue);
+    }
 };
+//提取
+const extract={
+    //提取字符串中的ip地址
+    ip:function(fieldValue){
+        return fieldValue.match(/(\d+)\.(\d+)\.(\d+)\.(\d+)/g);
+    },
+    //提取字符串中的网络链接
+    link:function(fieldValue){
+        return fieldValue.match(/(h|H)(r|R)(e|E)(f|F) *= *('|")?(\w|\\|\/|\.)+('|"| *|>)?/g);
+    },
+	//提取字符串中的邮件地址
+    mail:function(fieldValue){
+        return fieldValue.match(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/g);
+    },
+	//提取字符串中的图片链接
+    imglink:function(fieldValue){
+        return fieldValue.match(/(s|S)(r|R)(c|C) *= *('|")?(\w|\\|\/|\.)+('|"| *|>)?/g);
+    },
+	//提取字符串中的整数
+    integer:function(fieldValue){
+        return fieldValue.match(/\d+/g);
+    },
+	//提取字符串中的浮点数
+    decimal:function(fieldValue){
+        return fieldValue.match(/(-?\d*)\.?\d+/g);
+    },
+	//提取字符串中的任何数字
+    number:function(fieldValue){
+        return fieldValue.match(/(-?\d*)(\.\d+)?/g);
+    },
+	//提取字符串中的中文字符串
+    chinese:function(fieldValue){
+        return fieldValue.match(/[\u4e00-\u9fa5]*/g);
+    },
+	//提取字符串中的双字节字符串 (汉字)
+    dchinese:function(fieldValue){
+        return fieldValue.match(/[^\x00-\xff]*/g);
+    },
+}
 
 
 //纯文本方式更改元素内容
