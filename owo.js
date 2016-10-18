@@ -260,7 +260,31 @@ const extract={
         return fieldValue.match(/[^\x00-\xff]*/g);
     },
 }
-
+//位置
+const position={
+    //获取控件左绝对位置
+    getAbsoluteLeft:function(Target){
+        if(typeof Target === "string") Target=document.getElementById(Target);
+        oLeft = o.offsetLeft;           
+        while(o.offsetParent!=null) { 
+            oParent = o.offsetParent    
+            oLeft += oParent.offsetLeft 
+            o = oParent
+        }
+        return oLeft;
+    },
+    //获取控件上绝对位置
+    getAbsoluteTop:function(Target){
+        if(typeof Target === "string") Target=document.getElementById(Target);
+        oTop = o.offsetTop;   
+        while(o.offsetParent!=null) { 
+            oParent = o.offsetParent    
+            oTop  += oParent.offsetLeft 
+            o = oParent
+        }
+        return oTop;
+    }
+}
 
 //纯文本方式更改元素内容
 function textContent(element,value){
