@@ -21,7 +21,7 @@ var owo = {
 		// [默认值]              无                 无                      null                   0   
 		// [类型 or 单位]       字符串              字符串                   字符串                  整数  
 		//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-		cutStringArray:function(original,before,after,index){var aa=[],ab=0;while(original.indexOf(before,index)>0){aa[ab]=cutString(original,before,after,index);index=original.indexOf(before,index)+1;ab++}return aa},
+		cutStringArray:function(original,before,after,index){var aa=[],ab=0;while(original.indexOf(before,index)>0){aa[ab]=cutString(original,before,after,index);index=original.indexOf(before,index)+1;ab++}return aa}
 		
 		
     },
@@ -89,9 +89,9 @@ var owo = {
 		//select添加option选项
 		//使用示例 var selectValues = { "1": "test 1", "2": "test 2","4":"kkkk" };
 		//        package_element(selectValues,"mySelect");
-		package_element:function (JSON,SelectID){var output=[];for(var key in JSON){output.push('<option value="'+key+'">'+JSON[key]+'</option>')}document.getElementById(SelectID).innerHTML=output.join('')},
+		addOptions:function (JSON,SelectID){var output=[];for(var key in JSON){output.push('<option value="'+key+'">'+JSON[key]+'</option>')}document.getElementById(SelectID).innerHTML=output.join('')},
 		//求一段字符串在另一段字符串中出现的次数
-		getTextSum:function (original,text){return((original.match(eval("/"+text+"/g"))||[]).length)},
+		getTextSum:function (original,text){return((original.match(eval("/"+text+"/g"))||[]).length)}
 	},
 	array:{
 		//                                        给一个数组添加元素
@@ -121,7 +121,7 @@ var owo = {
 		//var a =[1111,222,432,12213];
 		//document.write(array_sort(a));
 		//结果为222,432,1111,12213
-		array_sort:function (array){return(array.sort(function(a,b){return a-b}))},
+		array_sort:function(array){return(array.sort(function(a,b){return a-b}))},
 	},
 	json:{
 		//          获得JSON的长度
@@ -133,7 +133,7 @@ var owo = {
 		// [默认值]                 无            
 		// [类型 or 单位]          JSON 
 		//－－－－－－－－－－－－－－－－－
-		getJsonLength:function (jsonData){var jsonLength=0;for(var item in jsonData){jsonLength++}return jsonLength},
+		getJsonLength:function (jsonData){var jsonLength=0;for(var item in jsonData){jsonLength++}return jsonLength}
 	},
 	check:{
 		//检查字符串是否仅包含中文
@@ -171,15 +171,9 @@ var owo = {
 	},
 	position:{
 		//获取控件左绝对位置
-		getAbsoluteLeft:function(Target) {if (typeof Target === "string") Target = document.getElementById(Target);oTop = o.offsetTop;while (o.offsetParent != null) {oParent = o.offsetParent;oTop += oParent.offsetLeft ;o = oParent;}return oTop},	
+		getAbsoluteLeft:function(Target){if(typeof Target==="string")Target=document.getElementById(Target);oLeft=o.offsetLeft;while(o.offsetParent!=null){oParent=o.offsetParent; oLeft+=oParent.offsetLeft;o=oParent}return oLeft},
 		//获取控件上绝对位置
-		getAbsoluteTop:function(Target)  {if(typeof Target==="string")Target=document.getElementById(Target);oTop=o.offsetTop;while(o.offsetParent!=null){oParent=o.offsetParent; oTop+=oParent.offsetLeft; o=oParent;}return oTop;},
-	},
-	time:{
-		//比较日期大小 alert(owo.time.dateSize("2016-10-11","2016-10-12"));
-		dateSize:function(A,B){return(Date.parse(new Date(A))<Date.parse(new Date(B)));},
-		//从大往小排列日期 alert(owo.time.dateSort(["2016-10-11","2016-10-12","2016-10-21","2016-11-12","2016-12-11","2016-10-9"]));
-		dateSort:function(A){A.sort(function(a, b){  return new Date(a) < new Date(b) ? 1 : -1;  }); return A;}
+		getAbsoluteTop:function(Target){if(typeof Target==="string")Target=document.getElementById(Target);oTop=o.offsetTop;while(o.offsetParent!=null){oParent=o.offsetParent; oTop+=oParent.offsetLeft;o=oParent}return oTop},
 	}
 }
 
