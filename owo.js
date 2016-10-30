@@ -21,7 +21,24 @@ var owo = {
 		// [默认值]              无                 无                      null                   0   
 		// [类型 or 单位]       字符串              字符串                   字符串                  整数  
 		//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-		cutStringArray:function(original,before,after,index){var aa=[],ab=0;while(original.indexOf(before,index)>0){aa[ab]=owo.text.cutString(original,before,after,index);index=original.indexOf(before,index)+1;ab++;}return aa;}
+		cutStringArray:function(original,before,after,index){var aa=[],ab=0;while(original.indexOf(before,index)>0){aa[ab]=owo.text.cutString(original,before,after,index);index=original.indexOf(before,index)+1;ab++;}return aa;},
+		//返回字符串回文palindrom("123")->321
+		palindrom:function (str) {  return str == str.split('').reverse().join('');},
+		//找出重复出现次数最多的字母
+		findMaxDuplicateChar:function(str){if(str.length == 1) {return str;}let charObj = {};for(let i=0;i<str.length;i++) {if(!charObj[str.charAt(i)]) {charObj[str.charAt(i)] = 1;}else{charObj[str.charAt(i)] += 1;},
+		//随机生成指制定长度的字符串。
+		//比如给定 长度 8  输出 4ldkfg9j
+		randomString:function(n){  let str = 'abcdefghijklmnopqrstuvwxyz9876543210';let tmp = '',i = 0,l = str.length;for (i = 0; i < n; i++) {tmp += str.charAt(Math.floor(Math.random() * l));}return tmp;},
+  }
+  let maxChar = '',
+      maxValue = 1;
+  for(var k in charObj) {
+    if(charObj[k] >= maxValue) {
+      maxChar = k;
+      maxValue = charObj[k];
+    }
+  }
+  return maxChar;}
 		
 		
     },
@@ -120,6 +137,13 @@ var owo = {
 		//document.write(array_sort(a));
 		//结果为222,432,1111,12213
 		array_sort:function(array){return(array.sort(function(a,b){return a-b;}));},
+		//去掉一组整型数组重复的值
+		removeDuplicate:function(arr){let hashTable = {};let data=[];for(let i=0,l=arr.length;i<l;i++) {if(!hashTable[arr[i]]) {hashTable[arr[i]] = true;data.push(arr[i]);},
+		
+  }
+  return data
+
+}
 	},
 	check:{
 		//检查字符串是否仅包含中文
