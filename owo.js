@@ -12,7 +12,7 @@ var owo = {
         // [默认值]              无                 无                      null                   0
         // [类型 or 单位]       字符串              字符串                   字符串                  整数
         //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-        cutString:function(original,before,after,index){index=index||0;if(typeof index==="number"){var P=original.indexOf(before,index);if(P>-1){if(after){var f=original.indexOf(after,P+1);if(f>-1){return original.substring(P+before.toString().length,f);}else{console.error("owo [在文本中找不到 参数三 "+after+"]");}}else{return original.substring(P+before.toString().length);}}else{console.error("owo [在文本中找不到 参数一 "+before+"]");}}else{console.error("owo [sizeTransition:"+index+"不是一个整数!]");}},
+        cutString:function(original,before,after,index){index=index||0;if(typeof index==="number"){var P=original.indexOf(before,index);if(P>-1){if(after){var f=original.indexOf(after,P+1);if(f>-1){return original.slice(P+before.toString().length,f);}else{console.error("owo [在文本中找不到 参数三 "+after+"]");}}else{return original.slice(P+before.toString().length);}}else{console.error("owo [在文本中找不到 参数一 "+before+"]");}}else{console.error("owo [sizeTransition:"+index+"不是一个整数!]");}},
         //                                         分割字符串
         //                                     返回值类型：字符串组
         //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
