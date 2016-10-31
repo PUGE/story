@@ -1,5 +1,6 @@
 "use strict";
 // Created by PUGE on 2016/7/24.
+console.log("加载成功！");
 var owo = {
     text: {
 		//                                         分割字符串
@@ -23,25 +24,13 @@ var owo = {
 		//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 		cutStringArray:function(original,before,after,index){var aa=[],ab=0;while(original.indexOf(before,index)>0){aa[ab]=owo.text.cutString(original,before,after,index);index=original.indexOf(before,index)+1;ab++;}return aa;},
 		//返回字符串回文palindrom("123")->321
-		palindrom:function (str) {  return str == str.split('').reverse().join('');},
+		palindrom:function (str) {  return str === str.split('').reverse().join('');},
 		//找出重复出现次数最多的字母
-		findMaxDuplicateChar:function(str){if(str.length == 1) {return str;}let charObj = {};for(let i=0;i<str.length;i++) {if(!charObj[str.charAt(i)]) {charObj[str.charAt(i)] = 1;}else{charObj[str.charAt(i)] += 1;},
+		findMaxDuplicateChar:function(str){if(str.length === 1) {return str;}let charObj = {};for(let i=0;i<str.length;i++) {if(!charObj[str.charAt(i)]) {charObj[str.charAt(i)] = 1;}else{charObj[str.charAt(i)] += 1;}}let maxChar = '',maxValue = 1;for(var k in charObj) {if(charObj[k] >= maxValue) {maxChar = k;maxValue = charObj[k];}}return maxChar;},
 		//随机生成指制定长度的字符串。
-		//比如给定 长度 8  输出 4ldkfg9j
-		randomString:function(n){  let str = 'abcdefghijklmnopqrstuvwxyz9876543210';let tmp = '',i = 0,l = str.length;for (i = 0; i < n; i++) {tmp += str.charAt(Math.floor(Math.random() * l));}return tmp;},
-  }
-  let maxChar = '',
-      maxValue = 1;
-  for(var k in charObj) {
-    if(charObj[k] >= maxValue) {
-      maxChar = k;
-      maxValue = charObj[k];
-    }
-  }
-  return maxChar;}
-		
-		
-    },
+        //比如给定 长度 8  输出 4ldkfg9j
+		randomString:function(n){const str = 'abcdefghijklmnopqrstuvwxyz9876543210';let tmp = '',i = 0,l = str.length;for (i = 0; i < n; i++) {tmp += str.charAt(Math.floor(Math.random() * l));}return tmp;},},
+
 	dom:{
 		//             在指定元素后追加元素
 		//               返回值类型：无
@@ -138,12 +127,10 @@ var owo = {
 		//结果为222,432,1111,12213
 		array_sort:function(array){return(array.sort(function(a,b){return a-b;}));},
 		//去掉一组整型数组重复的值
-		removeDuplicate:function(arr){let hashTable = {};let data=[];for(let i=0,l=arr.length;i<l;i++) {if(!hashTable[arr[i]]) {hashTable[arr[i]] = true;data.push(arr[i]);},
-		
-  }
-  return data
+		removeDuplicate:function(arr){let hashTable = {};let data=[];for(let i=0,l=arr.length;i<l;i++) {if(!hashTable[arr[i]]) {hashTable[arr[i]] = true;data.push(arr[i]);}}return data;},
+		//快速排序
+		quickSort:function(arr){if(arr.length<=1){return arr;}let leftArr=[];let rightArr=[];let q=arr[0];for(let i=1,l=arr.length;i<l;i++){if(arr[i]>q){rightArr.push(arr[i]);}else{leftArr.push(arr[i]);}}return[].concat(owo.array.quickSort(leftArr),[q],owo.array.quickSort(rightArr));},
 
-}
 	},
 	check:{
 		//检查字符串是否仅包含中文
@@ -180,6 +167,7 @@ var owo = {
 		dchinese:function(fieldValue){return fieldValue.match(/[^\x00-\xff]*/g);},
 	},
 	db:{
+		//新建一个数据库 newDB(数据库名称，数据库版本，成功回调，更新回调，错误回调)
 		newDB:function (dbName,Edition,success,upgrade,openError) {
             window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
             window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
@@ -197,9 +185,8 @@ var owo = {
             console.error(a.srcElement.error);
         },
         addTable:function (event,tableName,index) {
-            console.log(event);
             const db = event.target.result;
-            const objectStore = db.createObjectStore("customers", { keyPath: "_ID" });
+            const objectStore = db.createObjectStore(tableName, { keyPath: "_ID" });
             for (var i in index) {
                 objectStore.createIndex(i, i, { unique: index.i });
             }
