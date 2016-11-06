@@ -243,6 +243,14 @@ var owo = {
             };
         }
     }
+	time:{
+		//转换标准时间为时间戳
+		getDateTimeStamp:function(dateStr){return Date.parse(dateStr.replace(/-/gi,"/"));},
+		//把时间戳转化为几天前,几小时前，几分钟前
+		// console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
+		getDateDiff:function(dateTimeStamp){const diffValue =  new Date().getTime() - dateTimeStamp;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC){result="" + parseInt(monthC) + "月前";}else if(weekC){result="" + parseInt(weekC) + "周前";}else if(dayC){result=""+ parseInt(dayC) +"天前";}else if(hourC){result=""+ parseInt(hourC) +"小时前";}else if(minC){result=""+ parseInt(minC) +"分钟前";}elseresult="刚刚";return result;},
+		
+	}
 };
 
 
