@@ -125,11 +125,13 @@ var owo = {
         //var a =[1111,222,432,12213];
         //document.write(array_sort(a));
         //结果为222,432,1111,12213
-        array_sort:function(array){return(array.sort(function(a,b){return a-b;}));},
+        array_sort:function(arr){return(arr.sort(function(a,b){return a-b;}));},
         //去掉一组整型数组重复的值
         removeDuplicate:function(arr){let hashTable = {};let data=[];for(let i=0,l=arr.length;i<l;i++) {if(!hashTable[arr[i]]) {hashTable[arr[i]] = true;data.push(arr[i]);}}return data;},
         //快速排序
         quickSort:function(arr){if(arr.length<=1){return arr;}let leftArr=[];let rightArr=[];let q=arr[0];for(let i=1,l=arr.length;i<l;i++){if(arr[i]>q){rightArr.push(arr[i]);}else{leftArr.push(arr[i]);}}return[].concat(owo.array.quickSort(leftArr),[q],owo.array.quickSort(rightArr));},
+        //随机打乱数组
+        upsetArray:function(arr){return arr.sort(() => {return Math.random() - 0.5;});},
 
     },
     check:{
@@ -242,13 +244,13 @@ var owo = {
                 success(request.result);
             };
         }
-    }
+    },
 	time:{
 		//转换标准时间为时间戳
 		getDateTimeStamp:function(dateStr){return Date.parse(dateStr.replace(/-/gi,"/"));},
 		//把时间戳转化为几天前,几小时前，几分钟前
 		// console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
-		getDateDiff:function(dateTimeStamp){const diffValue =  new Date().getTime() - dateTimeStamp;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC){result="" + parseInt(monthC) + "月前";}else if(weekC){result="" + parseInt(weekC) + "周前";}else if(dayC){result=""+ parseInt(dayC) +"天前";}else if(hourC){result=""+ parseInt(hourC) +"小时前";}else if(minC){result=""+ parseInt(minC) +"分钟前";}elseresult="刚刚";return result;},
+		getDateDiff:function(dateTimeStamp){let result; const diffValue =  new Date().getTime() - dateTimeStamp;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC){result="" + parseInt(monthC) + "月前";}else if(weekC){result="" + parseInt(weekC) + "周前";}else if(dayC){result=""+ parseInt(dayC) +"天前";}else if(hourC){result=""+ parseInt(hourC) +"小时前";}else if(minC){result=""+ parseInt(minC) +"分钟前";}else result="刚刚";return result;},
 		
 	}
 };
