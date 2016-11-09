@@ -252,7 +252,30 @@ var owo = {
 		// console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
 		getDateDiff:function(dateTimeStamp){let result; const diffValue =  new Date().getTime() - dateTimeStamp;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC){result="" + parseInt(monthC) + "月前";}else if(weekC){result="" + parseInt(weekC) + "周前";}else if(dayC){result=""+ parseInt(dayC) +"天前";}else if(hourC){result=""+ parseInt(hourC) +"小时前";}else if(minC){result=""+ parseInt(minC) +"分钟前";}else result="刚刚";return result;},
 		
+	},
+	cookie:{
+		//三个参数，一个是cookie的名子，一个是值，最后一个是天数
+		setCookie:function(name, value,days) {
+			const exp = new Date();    //new Date("December 31, 9998");
+			exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
+			document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+		},
+		//取cookies函数
+		getCookie:function(name) {
+			const arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+			if (arr != null) return unescape(arr[2]);
+			return null;
+		},
+		//删除cookie并重新演示
+		//该函数检查下cookie是否设置，如果设置了则将过期时间调到过去的时间;
+		//剩下就交给操作系统适当时间清理cookie啦
+		delCookie:function(name){
+			if (getCookie(name)){
+				document.cookie = name + "=" + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+			}
+		}
 	}
+	
 };
 
 
