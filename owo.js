@@ -1,7 +1,7 @@
 "use strict";
 // Created by PUGE on 2016/7/24.
-console.log("加载成功！-----by PUGE");
-var owo = {
+
+const owo = {
     wow:{
         isMillisecondStamp:function(num){if(num.length===10)return num*1000;else if(num.length===13) return num;else {console.log(num+"不是一个标准的时间戳！");return false;}},
         ifStringGetElementById:function(target){if(typeof target==="string") return document.getElementById(target);else return target;}
@@ -157,8 +157,7 @@ var owo = {
 	time:{
 		//转换标准时间为时间戳
 		getDateTimeStamp:function(dateStr){return Date.parse(dateStr.replace(/-/gi,"/"));},
-		//把时间戳转化为几天前,几小时前，几分钟前
-		// console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
+		//把时间戳转化为几天前,几小时前，几分钟前 console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
 		getDateDiff:function(nS){const a =owo.wow.isMillisecondStamp(nS);if(!a){return null;}let result; const diffValue =  new Date().getTime() - nS;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC>=1){result="" + parseInt(monthC) + "月前";}else if(weekC>=1){result="" + parseInt(weekC) + "周前";}else if(dayC>=1){result=""+ parseInt(dayC) +"天前";}else if(hourC>=1){result=""+ parseInt(hourC) +"小时前";}else if(minC>=1){result=""+ parseInt(minC) +"分钟前";}else result="刚刚";return result;},
 		//时间戳转时间 2016/11/14 下午4:28 
 		getLocalTime:function(nS) {const a =owo.wow.isMillisecondStamp(nS);if(a){return new Date(parseInt(a)).toLocaleString().replace(/:\d{1,2}$/,' ');}},
@@ -172,3 +171,4 @@ var owo = {
 
     }
 };
+if(owo){console.log("加载成功！-----by PUGE");}else{console.log("加载失败!");}
