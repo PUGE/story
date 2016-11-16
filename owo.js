@@ -17,8 +17,8 @@ const owo = {
         findMaxDuplicateChar:function(str){if(str.length === 1) {return str;}let charObj = {};for(let i=0;i<str.length;i++) {if(!charObj[str.charAt(i)]) {charObj[str.charAt(i)] = 1;}else{charObj[str.charAt(i)] += 1;}}let maxChar = '',maxValue = 1;for(var k in charObj) {if(charObj[k] >= maxValue) {maxChar = k;maxValue = charObj[k];}}return maxChar;},
         //随机生成指制定长度的字符串。
         //比如给定 长度 8  输出 4ldkfg9j
-        randomString:function(n){const str = 'abcdefghijklmnopqrstuvwxyz9876543210';let tmp = '',i = 0,l = str.length;for (i = 0; i < n; i++) {tmp += str.charAt(Math.floor(Math.random() * l));}return tmp;},},
-
+        randomString:function(n){const str = 'abcdefghijklmnopqrstuvwxyz9876543210';let tmp = '',i = 0,l = str.length;for (i = 0; i < n; i++) {tmp += str.charAt(Math.floor(Math.random() * l));}return tmp;},
+    },
     dom:{
         //在指定元素后追加元素
         insertTagAfter:function (Target,Object){Target=owo.wow.ifStringGetElementById(Target);const parent=Target.parentNode;if(parent.lastChild===Target){parent.appendChild(Object);}else{parent.insertBefore(Object,Target.nextSibling);}},
