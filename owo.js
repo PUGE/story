@@ -1,6 +1,6 @@
 "use strict";
 // Created by PUGE on 2016/7/24.
-console.log("加载成功！");
+console.log("加载成功！-----by PUGE");
 var owo = {
     wow:{
         isMillisecondStamp:function(num){if(num.length===10)return num*1000;else if(num.length===13) return num;else {console.log(num+"不是一个标准的时间戳！");return false;}},
