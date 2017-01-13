@@ -171,6 +171,10 @@ const owo = {
         //根据参数名获取URL中的参数
         GetQueryString:function (name){const reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");const r = window.location.search.substr(1).match(reg);if(r!==null)return  decodeURI(r[2]); return null;},
 
+    },
+    salt:{
+        //生成指定长度，包含指定字符的字符串 咕.com/demo/randomstring
+        randomString:function (len, charSet) {charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';let randomString = '';for (let i = 0; i < len; i++) {let randomPoz = Math.floor(Math.random() * charSet.length);randomString += charSet.substring(randomPoz,randomPoz+1);}return randomString;}
     }
 };
 if(owo){console.log("加载成功！-----by PUGE");}else{console.log("加载失败!");}
