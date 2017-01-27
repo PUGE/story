@@ -175,6 +175,29 @@ const owo = {
     salt:{
         //生成指定长度，包含指定字符的字符串 咕.com/demo/randomstring
         randomString:function (len, charSet) {charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';let randomString = '';for (let i = 0; i < len; i++) {let randomPoz = Math.floor(Math.random() * charSet.length);randomString += charSet.substring(randomPoz,randomPoz+1);}return randomString;}
+    },
+Ajax:{
+    get: function (url,fn){
+        var obj=new XMLHttpRequest();  // XMLHttpRequest对象用于在后台与服务器交换数据          
+        obj.open('GET',url,true);
+        obj.onreadystatechange=function(){
+            if (obj.readyState == 4 && obj.status == 200 || obj.status == 304) { // readyState==4说明请求已完成
+                fn.call(this, obj.responseText);  //从服务器获得数据
+            }
+        };
+        obj.send(null);
+    },
+    post: function (url, data, fn) {
+        var obj = new XMLHttpRequest();
+        obj.open("POST", url, true);
+        obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
+        obj.onreadystatechange = function () {
+            if (obj.readyState == 4 && (obj.status == 200 || obj.status == 304)) {  // 304未修改
+                fn.call(this, obj.responseText);
+            }
+        };
+        obj.send(data);
     }
+}
 };
 if(owo){console.log("加载成功！-----by PUGE");}else{console.log("加载失败!");}
