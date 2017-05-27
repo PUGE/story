@@ -8,8 +8,7 @@ const owo = {
     },
     text: {
         //分割字符串
-        cutString:function(original,before,after,index){index = index || 0;if (typeof index === "number") {const P = original.indexOf(before, index);if (P > -1) {if (after) {const f = original.indexOf(after, P + 1);return (f>-1)? original.slice(P + before.toString().length, f):console.error("owo [在文本中找不到 参数三 "+after+"]");} else {return original.slice(P + before.toString().length);}} else {console.error("owo [在文本中找不到 参数一 " + before + "]");}} else {console.error("owo [sizeTransition:" + index + "不是一个整数!]");}
-        },
+        cutString:function(original,before,after,index){index = index || 0;if (typeof index === "number") {const P = original.indexOf(before, index);if (P > -1) {if (after) {const f = original.indexOf(after, P + 1);return (f>-1)? original.slice(P + before.toString().length, f):console.error("owo [在文本中找不到 参数三 "+after+"]");} else {return original.slice(P + before.toString().length);}} else {console.error("owo [在文本中找不到 参数一 " + before + "]");}} else {console.error("owo [sizeTransition:" + index + "不是一个整数!]");}},
         //根据一个基点分割字符串  实例：http://myweb-10017157.cos.myqcloud.com/20161212/%E7%BB%83%E4%B9%A0.zip
         cutStringPoint:function (original,str, before, after,order, index) {index = index || 0;if (typeof index === "number") {const O = original.indexOf(str, index);const P = (order[0]==="1")?original.lastIndexOf(before, O):original.indexOf(before, O);if (P > -1) {if (after) {let f ;switch (order[1]){case "1":f = original.indexOf(after, P + 1);break;case "2":f = original.indexOf(after, O + 1);break;case "3":f = original.lastIndexOf(after, O + 1);break;}return (f>-1)? original.slice(P + before.toString().length, f):console.error("owo [在文本中找不到 参数三 "+after+"]");}else {return original.slice(P + before.toString().length);}}else {console.error("owo [在文本中找不到 参数一 " + before + "]");}} else {console.error("owo [sizeTransition:" + index + "不是一个整数!]");}},
         //分割字符串组
@@ -87,9 +86,9 @@ const owo = {
 		//转换标准时间为时间戳
 		getDateTimeStamp:function(dateStr){return Date.parse(dateStr.replace(/-/gi,"/"));},
 		//把时间戳转化为几天前,几小时前，几分钟前 console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
-		getDateDiff:function(nS){const a =owo.wow.isMillisecondStamp(nS);if(!a){return null;}let result; const diffValue =  new Date().getTime() - nS;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC>=1){result="" + parseInt(monthC) + "月前";}else if(weekC>=1){result="" + parseInt(weekC) + "周前";}else if(dayC>=1){result=""+ parseInt(dayC) +"天前";}else if(hourC>=1){result=""+ parseInt(hourC) +"小时前";}else if(minC>=1){result=""+ parseInt(minC) +"分钟前";}else {result="刚刚";return result;}},
-		//时间戳转时间 2016/11/14 下午4:28 
-		TSToLocalTime:function(nS) {const a =owo.wow.isMillisecondStamp(nS);if(a){return new Date(parseInt(a)).toLocaleString().replace(/:\d{1,2}$/,' ');}},
+        timeoutDetection:function(){const nowTime=new Date().getTime();if(nowTime-DATA.Timestamp>7200000){if(DATA.Timestamp===null){return false}window.location.href="#/TimeOut";return true}DATA.Timestamp=nowTime;return false};		//时间戳转时间 2016/11/14 下午4:28 
+		//时间戳转时间 2016/11/14 下午4:28
+        TSToLocalTime:function(nS) {const a =owo.wow.isMillisecondStamp(nS);if(a){return new Date(parseInt(a)).toLocaleString().replace(/:\d{1,2}$/,' ');}},
         //时间戳转时间 2016年11月14日 4:30:55
         TSToLocalTime2:function(nS) {const now=new Date(parseInt(nS)); return now.getFullYear()+"年"+(now.getMonth()+1)+"月"+now.getDate()+"日"+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds(); },  
 	},
