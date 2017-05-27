@@ -3,8 +3,8 @@
 
 const owo = {
     wow:{
-        isMillisecondStamp:function(num){if(num.length===10)return num*1000;else if(num.length===13) return num;else {console.log(num+"不是一个标准的时间戳！");return false;}},
-        ifStringGetElementById:function(target){if(typeof target==="string") return document.getElementById(target);else return target;},
+        isMillisecondStamp:function(num){if(num.length===10){return num*1000;}else if(num.length===13) {return num;}else {console.log(num+"不是一个标准的时间戳！");return false;}},
+        ifStringGetElementById:function(target){if(typeof target==="string") {return document.getElementById(target);}else {return target;}},
     },
     text: {
         //分割字符串
@@ -30,7 +30,7 @@ const owo = {
         //隐藏/显示 元素
         hideElement:function (Dom){if(Dom.style.display==="none"){Dom.style.display="";}else{Dom.style.display="none";}},
         //纯文本方式更改元素内容
-        textContent:function (element,value){var content=element.textContent;if(value===undefined){if(content!==undefined)return content;else return element.innerText;}else{if(content!==undefined)element.textContent=value;else element.innerText=value;}},
+        textContent:function (element,value){var content=element.textContent;if(value===undefined){if(content!==undefined){return content;}else {return element.innerText;}}else{if(content!==undefined){element.textContent=value;}else {element.innerText=value;}}},
         //包裹元素
         package_element:function (Object,Target){Target=owo.wow.ifStringGetElementById(Target);const parent=Target.parentNode;parent.replaceChild(Object,Target);Object.appendChild(Target);},
         //select添加option选项
@@ -87,7 +87,7 @@ const owo = {
 		//转换标准时间为时间戳
 		getDateTimeStamp:function(dateStr){return Date.parse(dateStr.replace(/-/gi,"/"));},
 		//把时间戳转化为几天前,几小时前，几分钟前 console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
-		getDateDiff:function(nS){const a =owo.wow.isMillisecondStamp(nS);if(!a){return null;}let result; const diffValue =  new Date().getTime() - nS;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC>=1){result="" + parseInt(monthC) + "月前";}else if(weekC>=1){result="" + parseInt(weekC) + "周前";}else if(dayC>=1){result=""+ parseInt(dayC) +"天前";}else if(hourC>=1){result=""+ parseInt(hourC) +"小时前";}else if(minC>=1){result=""+ parseInt(minC) +"分钟前";}else result="刚刚";return result;},
+		getDateDiff:function(nS){const a =owo.wow.isMillisecondStamp(nS);if(!a){return null;}let result; const diffValue =  new Date().getTime() - nS;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC>=1){result="" + parseInt(monthC) + "月前";}else if(weekC>=1){result="" + parseInt(weekC) + "周前";}else if(dayC>=1){result=""+ parseInt(dayC) +"天前";}else if(hourC>=1){result=""+ parseInt(hourC) +"小时前";}else if(minC>=1){result=""+ parseInt(minC) +"分钟前";}else {result="刚刚";return result;}},
 		//时间戳转时间 2016/11/14 下午4:28 
 		TSToLocalTime:function(nS) {const a =owo.wow.isMillisecondStamp(nS);if(a){return new Date(parseInt(a)).toLocaleString().replace(/:\d{1,2}$/,' ');}},
         //时间戳转时间 2016年11月14日 4:30:55
@@ -95,35 +95,35 @@ const owo = {
 	},
     parameter:{
         //根据参数名获取URL中的参数
-        GetQueryString:function (name){const reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");const r = window.location.search.substr(1).match(reg);if(r!==null)return  decodeURI(r[2]); return null;},
+        GetQueryString:function (name){const reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");const r = window.location.search.substr(1).match(reg);if(r!==null){return  decodeURI(r[2]);} return null;},
 
     },
     salt:{
         //生成指定长度，包含指定字符的字符串 咕.com/demo/randomstring
         randomString:function (len, charSet) {charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';let randomString = '';for (let i = 0; i < len; i++) {let randomPoz = Math.floor(Math.random() * charSet.length);randomString += charSet.substring(randomPoz,randomPoz+1);}return randomString;}
     },
-Ajax:{
-    get: function (url,fn){
-        var obj=new XMLHttpRequest();  // XMLHttpRequest对象用于在后台与服务器交换数据          
-        obj.open('GET',url,true);
-        obj.onreadystatechange=function(){
-            if (obj.readyState == 4 && obj.status == 200 || obj.status == 304) { // readyState==4说明请求已完成
-                fn.call(this, obj.responseText);  //从服务器获得数据
-            }
-        };
-        obj.send(null);
-    },
-    post: function (url, data, fn) {
-        var obj = new XMLHttpRequest();
-        obj.open("POST", url, true);
-        obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
-        obj.onreadystatechange = function () {
-            if (obj.readyState == 4 && (obj.status == 200 || obj.status == 304)) {  // 304未修改
-                fn.call(this, obj.responseText);
-            }
-        };
-        obj.send(data);
+    ajax:{
+        get: function (url,fn){
+            const obj=new XMLHttpRequest();  // XMLHttpRequest对象用于在后台与服务器交换数据          
+            obj.open('GET',url,true);
+            obj.onreadystatechange=function(){
+                if (obj.readyState === 4 && obj.status === 200 || obj.status === 304) { // readyState==4说明请求已完成
+                    fn.call(this, obj.responseText);  //从服务器获得数据
+                }
+            };
+            obj.send(null);
+        },
+        post: function (url, data, fn) {
+            const obj = new XMLHttpRequest();
+            obj.open("POST", url, true);
+            obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
+            obj.onreadystatechange = function () {
+                if (obj.readyState === 4 && (obj.status === 200 || obj.status === 304)) {  // 304未修改
+                    fn.call(this, obj.responseText);
+                }
+            };
+            obj.send(data);
+        }
     }
-}
 };
 if(owo){console.log("加载成功！-----by PUGE");}else{console.log("加载失败!");}
