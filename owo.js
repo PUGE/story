@@ -112,16 +112,21 @@ const owo = {
             };
             obj.send(null);
         },
-        post: function (url, data, fn) {
-            const obj = new XMLHttpRequest();
-            obj.open("POST", url, true);
-            obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // 发送信息至服务器时内容编码类型
-            obj.onreadystatechange = function () {
-                if (obj.readyState === 4 && (obj.status === 200 || obj.status === 304)) {  // 304未修改
-                    fn.call(this, obj.responseText);
-                }
-            };
-            obj.send(data);
+        post: function (url, data, callback, onError) {
+	    const request = new XMLHttpRequest();
+	    request.onreadystatechange = function() {
+		if (request.readyState != 4 || request.status != 200) { return; }
+		var body = JSON.parse(request.responseText);
+		if (body.error) {
+		    onError(body.error);
+		}
+		else {
+		    callback.(body);
+		}
+	    };
+	    request.open("POST", url, true);
+	    request.setRequestHeader("Content-type", "application/json");
+	    request.send(JSON.stringify(data));
         }
     }
 };
